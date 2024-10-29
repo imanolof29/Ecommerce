@@ -9,4 +9,5 @@ import Foundation
 
 protocol APIProductDataSourceType{
     func getProducts() async -> Result<[ProductDTO], HTTPClientError>
+    func getProductDetail(with id: Int) async -> Result<ProductDTO, HTTPClientError>
 }

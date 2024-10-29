@@ -25,13 +25,15 @@ struct ProductListView: View {
                     NavigationStack{
                         List{
                             ForEach(viewModel.products, id: \.id){ product in
-                                VStack(alignment: .leading){
-                                    Text(product.title)
-                                    Text(product.price.description)
+                                NavigationLink(destination: ProductDetailFactory.create(id: product.id)){
+                                    VStack(alignment: .leading){
+                                        Text(product.title)
+                                        Text(product.price.description)
+                                    }
                                 }
                             }
                         }
-                        .navigationTitle("Productos")
+                        .navigationTitle("Products")
                     }
                 }else{
                     Text(viewModel.showErrorMessage!)

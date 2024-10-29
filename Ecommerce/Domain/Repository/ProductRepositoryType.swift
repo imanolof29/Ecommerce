@@ -9,4 +9,5 @@ import Foundation
 
 protocol ProductRepositoryType{
     func getProducts() async -> Result<[Product], EcommerceDomainError>
+    func getProductDetail(with id: Int) async -> Result<Product, EcommerceDomainError>
 }

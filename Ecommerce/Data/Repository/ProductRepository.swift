@@ -34,4 +34,17 @@ class ProductRepository: ProductRepositoryType{
         
     }
     
+    func getProductDetail(with id: Int) async -> Result<Product, EcommerceDomainError> {
+        let productResult = await apiDatasource.getProductDetail(with: id)
+        
+        guard case .success(let productData) = productResult else {
+            return .failure(errorMapper.map(error: productResult.failureValue as? HTTPClientError))
+        }
+        
+        let product = Product(id: productData.id, title: productData.title, price: productData.price, description: productData.description)
+        
+        return .success(product)
+        
+    }
+    
 }
